@@ -23,6 +23,7 @@ import javax.swing.JDesktopPane;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import java.awt.Color;
+import javax.swing.border.LineBorder;
 
 public class Menu extends JFrame {
 
@@ -33,6 +34,14 @@ public class Menu extends JFrame {
 	private JButton verBtn;
 	private JButton eliminarBtn;
 	private JLabel lblNewLabel;
+	private JButton conyugeBtn;
+	private JButton ahorroBtn;
+	private JButton acreditacionesBtn;
+	private JButton viviendaBtn;
+	private JLabel lblNewLabel_1;
+	private JLabel lblNewLabel_2;
+	private JLabel lblMenPostulantes;
+	private JLabel lblMenSistemas;
 
 
 	/**
@@ -84,6 +93,7 @@ public class Menu extends JFrame {
 		contentPane.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBorder(new LineBorder(Color.LIGHT_GRAY));
 		scrollPane.setBackground(Color.WHITE);
 		scrollPane.setBounds(10, 296, 714, 254);
 		contentPane.add(scrollPane);
@@ -98,7 +108,7 @@ public class Menu extends JFrame {
 				ingre.setVisible(true);
 			}
 		});
-		ingresarBtn.setBounds(21, 87, 171, 29);
+		ingresarBtn.setBounds(35, 115, 171, 29);
 		contentPane.add(ingresarBtn);
 		
 		actualizarBtn = new JButton("Actualizar Postulante");
@@ -108,7 +118,7 @@ public class Menu extends JFrame {
 				actualizar.setVisible(true);
 			}
 		});
-		actualizarBtn.setBounds(21, 127, 171, 29);
+		actualizarBtn.setBounds(35, 155, 171, 29);
 		contentPane.add(actualizarBtn);
 		
 		verBtn = new JButton("Mostrar Postulantes");
@@ -118,7 +128,7 @@ public class Menu extends JFrame {
 				//ver.setVisible(true);
 			}
 		});
-		verBtn.setBounds(21, 209, 171, 29);
+		verBtn.setBounds(35, 236, 171, 29);
 		contentPane.add(verBtn);
 		
 		eliminarBtn = new JButton("Eliminar Postulantes");
@@ -128,7 +138,7 @@ public class Menu extends JFrame {
 				eliminar.setVisible(true);
 			}
 		});
-		eliminarBtn.setBounds(21, 168, 171, 29);
+		eliminarBtn.setBounds(35, 196, 171, 29);
 		contentPane.add(eliminarBtn);
 		
 		lblNewLabel = new JLabel("Listado de Postulantes");
@@ -157,7 +167,7 @@ public class Menu extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		mantenerBtn.setBounds(542, 87, 171, 29);
+		mantenerBtn.setBounds(515, 115, 171, 29);
 		contentPane.add(mantenerBtn);
 		
 		JButton reporteBtn = new JButton("Reportes");
@@ -165,8 +175,46 @@ public class Menu extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		reporteBtn.setBounds(542, 127, 171, 29);
+		reporteBtn.setBounds(515, 155, 171, 29);
 		contentPane.add(reporteBtn);
+		
+		conyugeBtn = new JButton("C\u00F3nyuge");
+		conyugeBtn.setBounds(234, 236, 171, 29);
+		contentPane.add(conyugeBtn);
+		
+		ahorroBtn = new JButton("Ahorros");
+		ahorroBtn.setBounds(234, 196, 171, 29);
+		contentPane.add(ahorroBtn);
+		
+		acreditacionesBtn = new JButton("Acreditaciones");
+		acreditacionesBtn.setBounds(234, 155, 171, 29);
+		contentPane.add(acreditacionesBtn);
+		
+		viviendaBtn = new JButton("Vivienda");
+		viviendaBtn.setBounds(234, 115, 171, 29);
+		contentPane.add(viviendaBtn);
+		
+		lblMenPostulantes = new JLabel("Men\u00FA Postulantes");
+		lblMenPostulantes.setFont(new Font("Arial", Font.BOLD, 14));
+		lblMenPostulantes.setBounds(39, 82, 209, 22);
+		contentPane.add(lblMenPostulantes);
+		
+		lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setBorder(new LineBorder(Color.LIGHT_GRAY));
+		lblNewLabel_1.setBounds(10, 72, 420, 213);
+		contentPane.add(lblNewLabel_1);
+		
+		lblMenSistemas = new JLabel("Men\u00FA Sistema");
+		lblMenSistemas.setHorizontalAlignment(SwingConstants.LEFT);
+		lblMenSistemas.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblMenSistemas.setFont(new Font("Arial", Font.BOLD, 14));
+		lblMenSistemas.setBounds(515, 82, 171, 22);
+		contentPane.add(lblMenSistemas);
+		
+		lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setBorder(new LineBorder(Color.LIGHT_GRAY));
+		lblNewLabel_2.setBounds(478, 72, 246, 169);
+		contentPane.add(lblNewLabel_2);
 		
 		/*lblCargos = new JLabel("Cargos");
 		lblCargos.setFont(new Font("Arial", Font.BOLD, 18));

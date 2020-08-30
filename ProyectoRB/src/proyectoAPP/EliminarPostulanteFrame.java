@@ -52,7 +52,7 @@ public class EliminarPostulanteFrame extends JFrame {
 		contentPane.setLayout(null);
 		
 		postulantesCbx = new JComboBox<>();
-		postulantesCbx.setBounds(127, 54, 189, 27);
+		postulantesCbx.setBounds(100, 87, 233, 29);
 		contentPane.add(postulantesCbx);
 		
 		JButton eliminarBtn = new JButton("Eliminar");
@@ -70,11 +70,11 @@ public class EliminarPostulanteFrame extends JFrame {
 				
 			}
 		});
-		eliminarBtn.setBounds(296, 182, 117, 29);
+		eliminarBtn.setBounds(153, 182, 140, 29);
 		contentPane.add(eliminarBtn);
 		
 		lblNewLabel = new JLabel("Seleccione un postulante:");
-		lblNewLabel.setBounds(15, 16, 168, 20);
+		lblNewLabel.setBounds(153, 30, 168, 20);
 		contentPane.add(lblNewLabel);
 		cargarCombo();
 		

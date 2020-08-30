@@ -17,6 +17,8 @@ import proyectoModel.entities.Postulante;
 import proyectoModel.services.PostulantesService;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import javax.swing.border.LineBorder;
 
 public class ActualizarPostulanteFrame extends JFrame {
 
@@ -29,7 +31,7 @@ public class ActualizarPostulanteFrame extends JFrame {
 
 	public ActualizarPostulanteFrame() {setTitle("Actualizar Postulantes");
 	setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-	setBounds(100, 100, 567, 431);
+	setBounds(100, 100, 703, 550);
 	contentPane = new JPanel();
 	contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 	setContentPane(contentPane);
@@ -38,38 +40,35 @@ public class ActualizarPostulanteFrame extends JFrame {
 	postulanteIdTxt = new JTextField();
 	postulanteIdTxt.setEnabled(false);
 	postulanteIdTxt.setColumns(10);
-	postulanteIdTxt.setBounds(217, 148, 117, 31);
+	postulanteIdTxt.setBounds(543, 28, 120, 20);
 	contentPane.add(postulanteIdTxt);
 	
-	JLabel lblNewLabel = new JLabel("Identificador");
-	lblNewLabel.setBounds(113, 155, 89, 16);
-	contentPane.add(lblNewLabel);
-	
 	JLabel lblNewLabel_1 = new JLabel("Rut");
-	lblNewLabel_1.setBounds(134, 202, 61, 16);
+	lblNewLabel_1.setBounds(21, 83, 61, 16);
 	contentPane.add(lblNewLabel_1);
 	
 	postulanteRutTxt = new JTextField();
 	postulanteRutTxt.setColumns(10);
-	postulanteRutTxt.setBounds(215, 195, 189, 31);
+	postulanteRutTxt.setBounds(160, 81, 120, 20);
 	contentPane.add(postulanteRutTxt);
 	
 	estadoIncritoTxt = new JTextField();
+	estadoIncritoTxt.setBackground(Color.LIGHT_GRAY);
 	estadoIncritoTxt.setColumns(10);
-	estadoIncritoTxt.setBounds(212, 285, 189, 31);
+	estadoIncritoTxt.setBounds(495, 81, 168, 20);
 	contentPane.add(estadoIncritoTxt);
 	
 	JLabel lblNewLabel_2 = new JLabel("Estado Inscrito");
-	lblNewLabel_2.setBounds(82, 292, 117, 16);
+	lblNewLabel_2.setBounds(10, 484, 117, 16);
 	contentPane.add(lblNewLabel_2);
 	
 	JLabel lblNewLabel_3 = new JLabel("Nombres");
-	lblNewLabel_3.setBounds(82, 249, 117, 16);
+	lblNewLabel_3.setBounds(21, 110, 117, 16);
 	contentPane.add(lblNewLabel_3);
 	
 	postulanteNombreTxt = new JTextField();
 	postulanteNombreTxt.setColumns(10);
-	postulanteNombreTxt.setBounds(212, 242, 189, 31);
+	postulanteNombreTxt.setBounds(112, 112, 168, 20);
 	contentPane.add(postulanteNombreTxt);
 	
 	
@@ -108,7 +107,7 @@ public class ActualizarPostulanteFrame extends JFrame {
 		}
 	});
 	actualizarBtn.setEnabled(false);
-	actualizarBtn.setBounds(413, 330, 117, 29);
+	actualizarBtn.setBounds(413, 449, 117, 29);
 	contentPane.add(actualizarBtn);
 	
 	postulantesCbx = new JComboBox<Postulante>();
@@ -131,12 +130,26 @@ public class ActualizarPostulanteFrame extends JFrame {
 			}
 		}
 	});
-	postulantesCbx.setBounds(215, 35, 189, 27);
+	postulantesCbx.setBounds(163, 28, 230, 20);
 	contentPane.add(postulantesCbx);
 	
 	JLabel lblNewLabel_4 = new JLabel("Seleccione un postulante:");
-	lblNewLabel_4.setBounds(34, 35, 168, 20);
+	lblNewLabel_4.setBounds(21, 28, 168, 20);
 	contentPane.add(lblNewLabel_4);
+	
+	JLabel lblEstadoInscripcin = new JLabel("Estado Inscripci\u00F3n");
+	lblEstadoInscripcin.setBounds(346, 78, 102, 27);
+	contentPane.add(lblEstadoInscripcin);
+	
+	JLabel lblNewLabel_1_1_1 = new JLabel("ID Postulante");
+	lblNewLabel_1_1_1.setBounds(446, 28, 87, 20);
+	contentPane.add(lblNewLabel_1_1_1);
+	
+	JLabel lblNewLabel_1_1 = new JLabel("");
+	lblNewLabel_1_1.setBorder(new LineBorder(Color.LIGHT_GRAY));
+	lblNewLabel_1_1.setBackground(Color.LIGHT_GRAY);
+	lblNewLabel_1_1.setBounds(10, 11, 664, 50);
+	contentPane.add(lblNewLabel_1_1);
 	cargarCombo();
 }
 

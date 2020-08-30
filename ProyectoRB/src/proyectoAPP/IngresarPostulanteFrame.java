@@ -47,11 +47,22 @@ public class IngresarPostulanteFrame extends JFrame {
 	private JTextField postulanteEmailTxt;
 	private JTextField postulanteCodPosTxt;
 	private JTextField postulanteTeleDomTxt;
+	private JTextField postulanteCalleTxt;
+	private JTextField postulanteBlockTxt;
+	private JTextField postulanteManzanaTxt;
+	private JTextField postulanteLocalidadTxt;
+	private JTextField postulanteNumTxt;
+	private JTextField postulanteDeptoTxt;
+	private JTextField postulanteSitioTxt;
+	private JTextField postulantePoblaTxt;
+	private JTextField postulanteIDTxt;
+	private JTextField postulanteFolioTxt;
+	private JTextField postulanteComTxt;
 
 	public IngresarPostulanteFrame() {
 		setTitle("Identificaci\u00F3n del Postulante");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 700, 740);
+		setBounds(100, 100, 900, 650);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -102,7 +113,8 @@ public class IngresarPostulanteFrame extends JFrame {
 		contentPane.add(lblNewLabel_4_1);
 		
 		JComboBox postulanteEstadoTxt = new JComboBox();
-		postulanteEstadoTxt.setModel(new DefaultComboBoxModel(new String[] {"", "Casado", "Conviviente Civ\u00EDl", "Soltero", "Divorciado", "Viudo"}));
+		postulanteEstadoTxt.setName("");
+		postulanteEstadoTxt.setModel(new DefaultComboBoxModel(new String[] {"Seleccionar..", "Casado", "Conviviente Civ\u00EDl", "Soltero", "Divorciado", "Viudo"}));
 		postulanteEstadoTxt.setBounds(503, 120, 120, 20);
 		contentPane.add(postulanteEstadoTxt);
 		
@@ -126,7 +138,7 @@ public class IngresarPostulanteFrame extends JFrame {
 		contentPane.add(lblseEncuentraSeparado);
 		
 		JComboBox postulanteSepaTxt = new JComboBox();
-		postulanteSepaTxt.setModel(new DefaultComboBoxModel(new String[] {"", "Si", "No"}));
+		postulanteSepaTxt.setModel(new DefaultComboBoxModel(new String[] {"No", "Si"}));
 		postulanteSepaTxt.setBounds(573, 214, 50, 20);
 		contentPane.add(postulanteSepaTxt);
 		
@@ -137,7 +149,7 @@ public class IngresarPostulanteFrame extends JFrame {
 		contentPane.add(lbltieneCertificadoDe);
 		
 		JComboBox postulanteCertPerTxt = new JComboBox();
-		postulanteCertPerTxt.setModel(new DefaultComboBoxModel(new String[] {"", "Si", "No"}));
+		postulanteCertPerTxt.setModel(new DefaultComboBoxModel(new String[] {"No", "Si"}));
 		postulanteCertPerTxt.setBounds(254, 183, 50, 20);
 		contentPane.add(postulanteCertPerTxt);
 		
@@ -165,16 +177,16 @@ public class IngresarPostulanteFrame extends JFrame {
 		contentPane.add(lblEstadoInscripcin);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Folio N\u00B0 FFP");
-		lblNewLabel_1_1.setBounds(23, 11, 131, 39);
+		lblNewLabel_1_1.setBounds(696, 20, 66, 20);
 		contentPane.add(lblNewLabel_1_1);
 		
 		JComboBox postulanteInscripTxt = new JComboBox();
-		postulanteInscripTxt.setModel(new DefaultComboBoxModel(new String[] {"", "Incompleto", "Completo"}));
+		postulanteInscripTxt.setModel(new DefaultComboBoxModel(new String[] {"Incompleto", "Completo"}));
 		postulanteInscripTxt.setBounds(536, 21, 120, 20);
 		contentPane.add(postulanteInscripTxt);
 		
 		JLabel lblNewLabel_1_1_1 = new JLabel("ID Postulante");
-		lblNewLabel_1_1_1.setBounds(200, 20, 102, 20);
+		lblNewLabel_1_1_1.setBounds(23, 20, 102, 20);
 		contentPane.add(lblNewLabel_1_1_1);
 		
 		
@@ -196,48 +208,36 @@ public class IngresarPostulanteFrame extends JFrame {
 				
 			}
 		});
-		ingresarBtn.setBounds(516, 655, 140, 29);
+		ingresarBtn.setBounds(534, 571, 140, 29);
 		contentPane.add(ingresarBtn);
-		
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setOpaque(true);
-		lblNewLabel_1.setBackground(Color.LIGHT_GRAY);
-		lblNewLabel_1.setBounds(10, 11, 664, 39);
-		contentPane.add(lblNewLabel_1);
 		
 		
 		//Limpiar
 		JButton limpiarBtn = new JButton("Limpiar");
-		limpiarBtn.setBounds(352, 655, 140, 29);
+		limpiarBtn.setBounds(384, 571, 140, 29);
 		contentPane.add(limpiarBtn);
 		
 		JButton viviendaBtn = new JButton("Vivienda");
-		viviendaBtn.setBounds(23, 588, 140, 29);
+		viviendaBtn.setBounds(729, 86, 120, 88);
 		contentPane.add(viviendaBtn);
 		
 		JButton acreditacionesBtn = new JButton("Acreditaciones");
-		acreditacionesBtn.setBounds(184, 588, 140, 29);
+		acreditacionesBtn.setBounds(729, 217, 120, 88);
 		contentPane.add(acreditacionesBtn);
 		
 		JButton ahorroBtn = new JButton("Ahorros");
-		ahorroBtn.setBounds(352, 588, 140, 29);
+		ahorroBtn.setBounds(729, 344, 120, 88);
 		contentPane.add(ahorroBtn);
 		
 		JButton conyugeBtn = new JButton("C\u00F3nyuge");
-		conyugeBtn.setBounds(516, 588, 140, 29);
+		conyugeBtn.setBounds(729, 472, 120, 88);
 		contentPane.add(conyugeBtn);
-		
-		JLabel lblNewLabel_1_2 = new JLabel("");
-		lblNewLabel_1_2.setOpaque(true);
-		lblNewLabel_1_2.setBackground(Color.LIGHT_GRAY);
-		lblNewLabel_1_2.setBounds(10, 571, 664, 65);
-		contentPane.add(lblNewLabel_1_2);
 		
 		JLabel lblNewLabel_1_1_2 = new JLabel("Datos de Contacto");
 		lblNewLabel_1_1_2.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblNewLabel_1_1_2.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel_1_1_2.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel_1_1_2.setBounds(23, 232, 651, 39);
+		lblNewLabel_1_1_2.setBounds(23, 232, 476, 39);
 		contentPane.add(lblNewLabel_1_1_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Tel\u00E9fono Trabajo:");
@@ -268,34 +268,152 @@ public class IngresarPostulanteFrame extends JFrame {
 		contentPane.add(postulanteEmailTxt);
 		
 		JLabel lblNewLabel_3_1 = new JLabel("Tel\u00E9fono Domicilio:");
-		lblNewLabel_3_1.setBounds(375, 282, 131, 20);
+		lblNewLabel_3_1.setBounds(368, 282, 131, 20);
 		contentPane.add(lblNewLabel_3_1);
 		
 		JLabel lblApellidoPaterno_1_1 = new JLabel("C\u00F3digo Postal:");
-		lblApellidoPaterno_1_1.setBounds(368, 345, 102, 20);
+		lblApellidoPaterno_1_1.setBounds(368, 313, 148, 20);
 		contentPane.add(lblApellidoPaterno_1_1);
 		
 		postulanteCodPosTxt = new JTextField();
 		postulanteCodPosTxt.setColumns(10);
-		postulanteCodPosTxt.setBounds(529, 350, 120, 20);
+		postulanteCodPosTxt.setBounds(503, 313, 120, 20);
 		contentPane.add(postulanteCodPosTxt);
 		
 		postulanteTeleDomTxt = new JTextField();
 		postulanteTeleDomTxt.setColumns(10);
-		postulanteTeleDomTxt.setBounds(536, 282, 120, 20);
+		postulanteTeleDomTxt.setBounds(503, 282, 120, 20);
 		contentPane.add(postulanteTeleDomTxt);
 		
 		JLabel lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setBorder(new LineBorder(Color.LIGHT_GRAY));
 		lblNewLabel_2.setBackground(Color.LIGHT_GRAY);
-		lblNewLabel_2.setBounds(10, 271, 664, 114);
+		lblNewLabel_2.setBounds(10, 271, 664, 105);
 		contentPane.add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_3_2 = new JLabel("Calle:");
+		lblNewLabel_3_2.setBounds(30, 401, 124, 20);
+		contentPane.add(lblNewLabel_3_2);
+		
+		JLabel lblApellidoPaterno_1_2 = new JLabel("Block:");
+		lblApellidoPaterno_1_2.setBounds(30, 432, 124, 20);
+		contentPane.add(lblApellidoPaterno_1_2);
+		
+		JLabel lblNombreCompleto_1_1 = new JLabel("Manzana:");
+		lblNombreCompleto_1_1.setBounds(30, 463, 124, 20);
+		contentPane.add(lblNombreCompleto_1_1);
+		
+		postulanteCalleTxt = new JTextField();
+		postulanteCalleTxt.setColumns(10);
+		postulanteCalleTxt.setBounds(164, 401, 147, 20);
+		contentPane.add(postulanteCalleTxt);
+		
+		postulanteBlockTxt = new JTextField();
+		postulanteBlockTxt.setColumns(10);
+		postulanteBlockTxt.setBounds(164, 432, 75, 20);
+		contentPane.add(postulanteBlockTxt);
+		
+		postulanteManzanaTxt = new JTextField();
+		postulanteManzanaTxt.setColumns(10);
+		postulanteManzanaTxt.setBounds(164, 463, 75, 20);
+		contentPane.add(postulanteManzanaTxt);
+		
+		JLabel lblNombreCompleto_1_1_1 = new JLabel("Localidad:");
+		lblNombreCompleto_1_1_1.setBounds(30, 494, 124, 20);
+		contentPane.add(lblNombreCompleto_1_1_1);
+		
+		postulanteLocalidadTxt = new JTextField();
+		postulanteLocalidadTxt.setColumns(10);
+		postulanteLocalidadTxt.setBounds(164, 492, 147, 20);
+		contentPane.add(postulanteLocalidadTxt);
+		
+		JLabel lblNewLabel_4_1_1 = new JLabel("Regi\u00F3n:");
+		lblNewLabel_4_1_1.setBounds(30, 524, 124, 23);
+		contentPane.add(lblNewLabel_4_1_1);
+		
+		JComboBox postulanteRegionTxt = new JComboBox();
+		postulanteRegionTxt.setModel(new DefaultComboBoxModel(new String[] {"Seleccionar..", "Regi\u00F3n de Arica y Parinacota", "Regi\u00F3n de Tarapac\u00E1", "Regi\u00F3n de Antofagasta", "Regi\u00F3n de Atacama", "Regi\u00F3n de Coquimbo", "Regi\u00F3n de Valpara\u00EDso", "Regi\u00F3n Metropolitana de Santiago", "Regi\u00F3n del Libertador General Bernardo O\u2019Higgins", "Regi\u00F3n del Maule", "Regi\u00F3n del \u00D1uble", "Regi\u00F3n del Biob\u00EDo", "Regi\u00F3n de La Araucan\u00EDa", "Regi\u00F3n de Los R\u00EDos", "Regi\u00F3n de Los Lagos", "Regi\u00F3n de Ays\u00E9n del General Carlos Ib\u00E1\u00F1ez del Campo", "Regi\u00F3n de Magallanes y la Ant\u00E1rtica Chilena"}));
+		postulanteRegionTxt.setBounds(164, 523, 186, 20);
+		contentPane.add(postulanteRegionTxt);
+		
+		JLabel lblNewLabel_3_2_1 = new JLabel("N\u00FAmero:");
+		lblNewLabel_3_2_1.setBounds(368, 401, 124, 20);
+		contentPane.add(lblNewLabel_3_2_1);
+		
+		postulanteNumTxt = new JTextField();
+		postulanteNumTxt.setColumns(10);
+		postulanteNumTxt.setBounds(502, 401, 147, 20);
+		contentPane.add(postulanteNumTxt);
+		
+		postulanteDeptoTxt = new JTextField();
+		postulanteDeptoTxt.setColumns(10);
+		postulanteDeptoTxt.setBounds(502, 432, 75, 20);
+		contentPane.add(postulanteDeptoTxt);
+		
+		JLabel lblApellidoPaterno_1_2_1 = new JLabel("Departamento:");
+		lblApellidoPaterno_1_2_1.setBounds(368, 432, 124, 20);
+		contentPane.add(lblApellidoPaterno_1_2_1);
+		
+		JLabel lblNombreCompleto_1_1_2 = new JLabel("Sitio:");
+		lblNombreCompleto_1_1_2.setBounds(368, 463, 124, 20);
+		contentPane.add(lblNombreCompleto_1_1_2);
+		
+		postulanteSitioTxt = new JTextField();
+		postulanteSitioTxt.setColumns(10);
+		postulanteSitioTxt.setBounds(502, 463, 75, 20);
+		contentPane.add(postulanteSitioTxt);
+		
+		postulantePoblaTxt = new JTextField();
+		postulantePoblaTxt.setColumns(10);
+		postulantePoblaTxt.setBounds(502, 492, 147, 20);
+		contentPane.add(postulantePoblaTxt);
+		
+		JLabel lblNombreCompleto_1_1_1_1 = new JLabel("Poblaci\u00F3n / Villa:");
+		lblNombreCompleto_1_1_1_1.setBounds(368, 494, 124, 20);
+		contentPane.add(lblNombreCompleto_1_1_1_1);
+		
+		JLabel lblNewLabel_4_1_1_1 = new JLabel("Comuna:");
+		lblNewLabel_4_1_1_1.setBounds(368, 524, 124, 23);
+		contentPane.add(lblNewLabel_4_1_1_1);
+		
+		postulanteIDTxt = new JTextField();
+		postulanteIDTxt.setBorder(null);
+		postulanteIDTxt.setBackground(Color.LIGHT_GRAY);
+		postulanteIDTxt.setSelectedTextColor(Color.WHITE);
+		postulanteIDTxt.setColumns(10);
+		postulanteIDTxt.setBounds(109, 20, 76, 20);
+		contentPane.add(postulanteIDTxt);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setBorder(new LineBorder(Color.LIGHT_GRAY));
+		lblNewLabel_1.setBackground(Color.LIGHT_GRAY);
+		lblNewLabel_1.setBounds(10, 11, 664, 39);
+		contentPane.add(lblNewLabel_1);
+		
+		postulanteFolioTxt = new JTextField();
+		postulanteFolioTxt.setBorder(null);
+		postulanteFolioTxt.setSelectedTextColor(Color.WHITE);
+		postulanteFolioTxt.setColumns(10);
+		postulanteFolioTxt.setBackground(Color.WHITE);
+		postulanteFolioTxt.setBounds(765, 20, 102, 20);
+		contentPane.add(postulanteFolioTxt);
+		
+		postulanteComTxt = new JTextField();
+		postulanteComTxt.setColumns(10);
+		postulanteComTxt.setBounds(503, 525, 147, 20);
+		contentPane.add(postulanteComTxt);
 		
 		JLabel lblNewLabel_2_1 = new JLabel("");
 		lblNewLabel_2_1.setBorder(new LineBorder(Color.LIGHT_GRAY));
 		lblNewLabel_2_1.setBackground(Color.LIGHT_GRAY);
-		lblNewLabel_2_1.setBounds(10, 431, 664, 129);
+		lblNewLabel_2_1.setBounds(10, 387, 664, 173);
 		contentPane.add(lblNewLabel_2_1);
+		
+		JLabel lblNewLabel_1_2 = new JLabel("");
+		lblNewLabel_1_2.setOpaque(true);
+		lblNewLabel_1_2.setBackground(Color.LIGHT_GRAY);
+		lblNewLabel_1_2.setBounds(684, 11, 200, 589);
+		contentPane.add(lblNewLabel_1_2);
 		
 		
 	}
