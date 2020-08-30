@@ -20,6 +20,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JDesktopPane;
+import javax.swing.SwingConstants;
+import javax.swing.ImageIcon;
+import java.awt.Color;
 
 public class Menu extends JFrame {
 
@@ -72,16 +75,17 @@ public class Menu extends JFrame {
 	}
 	
 	public Menu() {
-		setTitle("Administraci\u00F3n de Recurso Humano");
+		setTitle("https://fpp.minvu.gob.cl");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 748, 496);
+		setBounds(100, 100, 750, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(29, 212, 682, 214);
+		scrollPane.setBackground(Color.WHITE);
+		scrollPane.setBounds(10, 296, 714, 254);
 		contentPane.add(scrollPane);
 		
 		tablaPostulantes = new JTable();
@@ -94,7 +98,7 @@ public class Menu extends JFrame {
 				ingre.setVisible(true);
 			}
 		});
-		ingresarBtn.setBounds(15, 40, 171, 29);
+		ingresarBtn.setBounds(21, 87, 171, 29);
 		contentPane.add(ingresarBtn);
 		
 		actualizarBtn = new JButton("Actualizar Postulante");
@@ -104,7 +108,7 @@ public class Menu extends JFrame {
 				actualizar.setVisible(true);
 			}
 		});
-		actualizarBtn.setBounds(15, 72, 171, 29);
+		actualizarBtn.setBounds(21, 127, 171, 29);
 		contentPane.add(actualizarBtn);
 		
 		verBtn = new JButton("Mostrar Postulantes");
@@ -114,7 +118,7 @@ public class Menu extends JFrame {
 				//ver.setVisible(true);
 			}
 		});
-		verBtn.setBounds(15, 139, 171, 29);
+		verBtn.setBounds(21, 209, 171, 29);
 		contentPane.add(verBtn);
 		
 		eliminarBtn = new JButton("Eliminar Postulantes");
@@ -124,17 +128,45 @@ public class Menu extends JFrame {
 				eliminar.setVisible(true);
 			}
 		});
-		eliminarBtn.setBounds(15, 105, 171, 29);
+		eliminarBtn.setBounds(21, 168, 171, 29);
 		contentPane.add(eliminarBtn);
 		
 		lblNewLabel = new JLabel("Listado de Postulantes");
 		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 18));
-		lblNewLabel.setBounds(153, 160, 461, 47);
+		lblNewLabel.setBounds(515, 263, 209, 22);
 		contentPane.add(lblNewLabel);
 		
 		JDesktopPane desktopPane = new JDesktopPane();
 		desktopPane.setBounds(78, 160, 1, 1);
 		contentPane.add(desktopPane);
+		
+		JLabel lblFormularioDePostulacin = new JLabel("Formulario de Postulaci\u00F3n Personas");
+		lblFormularioDePostulacin.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFormularioDePostulacin.setFont(new Font("Arial", Font.BOLD, 18));
+		lblFormularioDePostulacin.setBounds(10, 11, 714, 22);
+		contentPane.add(lblFormularioDePostulacin);
+		
+		JLabel lblSistemaIntegradoSubsidio = new JLabel("Sistema Integrado Subsidio Habitacional");
+		lblSistemaIntegradoSubsidio.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSistemaIntegradoSubsidio.setFont(new Font("Arial", Font.BOLD, 12));
+		lblSistemaIntegradoSubsidio.setBounds(10, 31, 714, 22);
+		contentPane.add(lblSistemaIntegradoSubsidio);
+		
+		JButton mantenerBtn = new JButton("Mantenedores");
+		mantenerBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		mantenerBtn.setBounds(542, 87, 171, 29);
+		contentPane.add(mantenerBtn);
+		
+		JButton reporteBtn = new JButton("Reportes");
+		reporteBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		reporteBtn.setBounds(542, 127, 171, 29);
+		contentPane.add(reporteBtn);
 		
 		/*lblCargos = new JLabel("Cargos");
 		lblCargos.setFont(new Font("Arial", Font.BOLD, 18));

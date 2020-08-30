@@ -27,25 +27,6 @@ public class ActualizarPostulanteFrame extends JFrame {
 	private JTextField postulanteNombreTxt;
 	private JComboBox<Postulante> postulantesCbx;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ActualizarPostulanteFrame frame = new ActualizarPostulanteFrame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public ActualizarPostulanteFrame() {setTitle("Actualizar Postulantes");
 	setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	setBounds(100, 100, 567, 431);
@@ -91,6 +72,8 @@ public class ActualizarPostulanteFrame extends JFrame {
 	postulanteNombreTxt.setBounds(212, 242, 189, 31);
 	contentPane.add(postulanteNombreTxt);
 	
+	
+	//Actualizar
 	JButton actualizarBtn = new JButton("Actualizar");
 	actualizarBtn.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
