@@ -17,7 +17,6 @@ public class Postulante {
 	private Date fechaCertificadoPermanencia;
 	private char esSeparadoDeHecho;
 	private String titulo;
-	private int numCuenta;
 	
 	public Postulante() {
 		// TODO Auto-generated constructor stub
@@ -25,8 +24,7 @@ public class Postulante {
 	
 	public Postulante(int idPostulante, String estadoInscrito, String numCedulaIdentidad, String primerApellido,
 			Date fechaNacimiento, String segundoApellido, String nombres, String nacionalidad, char estadoCivil,
-			char certificadoPermanencia, Date fechaCertificadoPermanencia, char esSeparadoDeHecho, String titulo,
-			int numCuenta) {
+			char certificadoPermanencia, Date fechaCertificadoPermanencia, char esSeparadoDeHecho, String titulo ) {
 		this.idPostulante = idPostulante;
 		this.estadoInscrito = estadoInscrito;
 		this.numCedulaIdentidad = numCedulaIdentidad;
@@ -40,7 +38,6 @@ public class Postulante {
 		this.fechaCertificadoPermanencia = fechaCertificadoPermanencia;
 		this.esSeparadoDeHecho = esSeparadoDeHecho;
 		this.titulo = titulo;
-		this.numCuenta = numCuenta;
 	}
 
 	public int getIdPostulante() {
@@ -147,14 +144,6 @@ public class Postulante {
 		this.titulo = titulo;
 	}
 
-	public int getNumCuenta() {
-		return numCuenta;
-	}
-
-	public void setNumCuenta(int numCuenta) {
-		this.numCuenta = numCuenta;
-	}
-
 	@Override
 	public String toString() {
 		return "Postulante [idPostulante=" + idPostulante + ", estadoInscrito=" + estadoInscrito
@@ -162,8 +151,7 @@ public class Postulante {
 				+ ", fechaNacimiento=" + fechaNacimiento + ", segundoApellido=" + segundoApellido + ", nombres="
 				+ nombres + ", nacionalidad=" + nacionalidad + ", estadoCivil=" + estadoCivil
 				+ ", certificadoPermanencia=" + certificadoPermanencia + ", fechaCertificadoPermanencia="
-				+ fechaCertificadoPermanencia + ", esSeparadoDeHecho=" + esSeparadoDeHecho + ", titulo=" + titulo
-				+ ", numCuenta=" + numCuenta + "]";
+				+ fechaCertificadoPermanencia + ", esSeparadoDeHecho=" + esSeparadoDeHecho + ", titulo=" + titulo + "]";
 	}
 
 	

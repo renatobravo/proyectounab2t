@@ -61,7 +61,7 @@ public class EliminarPostulanteFrame extends JFrame {
 				Postulante postulante = (Postulante)postulantesCbx.getSelectedItem();
 				PostulantesService postulanteService = new PostulantesService();
 				//TODO: Preguntar si esta seguro?
-				if(postulanteService.eliminarPorRut(postulante)) {
+				if(postulanteService.eliminarPorId(postulante)) {
 					cargarCombo();
 					JOptionPane.showMessageDialog(null, "Postulante Eliminado");
 				} else {

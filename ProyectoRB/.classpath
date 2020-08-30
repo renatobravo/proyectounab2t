@@ -6,7 +6,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="D:/UNAB/libs/ojdbc8.jar"/>
-	<classpathentry kind="lib" path="jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/siste/Documents/uBello/Trimestre 2/Programación 2/ojdbc8.jar"/>
+	<classpathentry kind="lib" path="C:/Users/siste/Documents/uBello/Trimestre 2/Programación 2/jcalendar-1.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

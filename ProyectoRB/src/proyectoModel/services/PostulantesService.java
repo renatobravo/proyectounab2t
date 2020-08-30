@@ -24,7 +24,7 @@ private Conexion conexion = new Conexion();
 		Postulante postulante = null;
 		try {
 			String sql = "SELECT ID_POSTULANTE, ESTADO_INSCRITO, NUM_CEDULA_IDENTIDAD, FECHA_DE_NACIMIENTO, PRIMER_APELLIDO, SEGUNDO_APELLIDO, NOMBRES, NACIONALIDAD"
-					+ "ESTADO_CIVIL, CERTIFICADO_PERMANENCIA, FECHA_CERTIFICADO_PERMANENCIA, ES_SEPARADO_DE_HECHO, TITULO, NUM_CUENTA FROM POSTULANTES"
+					+ "ESTADO_CIVIL, CERTIFICADO_PERMANENCIA, FECHA_CERTIFICADO_PERMANENCIA, ES_SEPARADO_DE_HECHO, TITULO FROM POSTULANTES"
 					+" WHERE NUM_CEDULA_IDENTIDAD=? ";
 			PreparedStatement st = this.conexion.getCon().prepareStatement(sql);
 			st.setString(3, rut);
@@ -44,7 +44,6 @@ private Conexion conexion = new Conexion();
 				postulante.setFechaCertificadoPermanencia(rs.getDate(11));
 				postulante.setEsSeparadoDeHecho(rs.getString(12).charAt(0));
 				postulante.setTitulo(rs.getString(13));
-				postulante.setNumCuenta(rs.getInt(14));
 				
 			}
 			rs.close();
@@ -61,8 +60,8 @@ private Conexion conexion = new Conexion();
 		try {
 			String sql = "INSERT INTO POSTULANTE (ID_POSTULANTE,ESTADO_INSCRITO,NUM_CEDULA_IDENTIDAD,FECHA_DE_NACIMIENTO,"
 					+ "PRIMER_APELLIDO,SEGUNDO_APELLIDO,NOMBRES,NACIONALIDAD,ESTADO_CIVIL,CERTIFICADO_PERMANENCIA,FECHA_CERTIFICADO_PERMANENCIA,"
-					+ "ES_SEPARADO_DE_HECHO,TITULO,NUM_CUENTA)"
-					+" VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+					+ "ES_SEPARADO_DE_HECHO,TITULO,)"
+					+" VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			
 			PreparedStatement st = this.conexion.getCon().prepareStatement(sql);
 			
@@ -81,7 +80,6 @@ private Conexion conexion = new Conexion();
 			st.setDate(11, java.sql.Date.valueOf(dateFormat.format(p.getFechaCertificadoPermanencia())));
 			st.setString(12, String.valueOf(p.getEsSeparadoDeHecho()));
 			st.setString(13, p.getTitulo());
-			st.setInt(14, p.getNumCuenta());
 			
 			
 			st.executeUpdate();
@@ -101,7 +99,7 @@ private Conexion conexion = new Conexion();
 		try {		
 			
 			String sql = "SELECT ID_POSTULANTE, ESTADO_INSCRITO, NUM_CEDULA_IDENTIDAD, FECHA_DE_NACIMIENTO, PRIMER_APELLIDO, SEGUNDO_APELLIDO, NOMBRES, NACIONALIDAD,"
-					+ " ESTADO_CIVIL, CERTIFICADO_PERMANENCIA, FECHA_CERTIFICADO_PERMANENCIA, ES_SEPARADO_DE_HECHO, TITULO, NUM_CUENTA FROM POSTULANTES ORDER BY NOMBRES";
+					+ " ESTADO_CIVIL, CERTIFICADO_PERMANENCIA, FECHA_CERTIFICADO_PERMANENCIA, ES_SEPARADO_DE_HECHO, TITULO FROM POSTULANTES ORDER BY NOMBRES";
 			PreparedStatement st = this.conexion.getCon().prepareStatement(sql);
 			ResultSet rs = st.executeQuery();
 			while(rs.next()) {
@@ -120,7 +118,6 @@ private Conexion conexion = new Conexion();
 				postulante.setFechaCertificadoPermanencia(rs.getDate(11));
 				postulante.setEsSeparadoDeHecho(rs.getString(12).charAt(0));
 				postulante.setTitulo(rs.getString(13));
-				postulante.setNumCuenta(rs.getInt(14));
 				postulantes.add(postulante);
 			}
 			rs.close();
@@ -186,13 +183,13 @@ private Conexion conexion = new Conexion();
 		}
 	}
 	
-	public boolean eliminarPorRut(Postulante p) {
+	public boolean eliminarPorId(Postulante p) {
 		this.conexion.conectar();
 		try {
 			
-			String sql = "DELETE FROM POSTULANTES WHERE NUM_CEDULA_IDENTIDAD=?";
+			String sql = "DELETE FROM POSTULANTES WHERE ID_POSTULANTE=?";
 			PreparedStatement st = this.conexion.getCon().prepareStatement(sql);
-			st.setString(1, p.getNumCedulaIdentidad());
+			st.setInt(1, p.getIdPostulante());
 			
 			st.executeUpdate();
 			
