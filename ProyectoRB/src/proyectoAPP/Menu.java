@@ -19,6 +19,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.Font;
+import javax.swing.JDesktopPane;
 
 public class Menu extends JFrame {
 
@@ -89,8 +90,8 @@ public class Menu extends JFrame {
 		ingresarBtn = new JButton("Ingresar Postulante");
 		ingresarBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//IngresarCargoFrame ingre = new IngresarCargoFrame();
-				//ingre.setVisible(true);
+				IngresarPostulanteFrame ingre = new IngresarPostulanteFrame();
+				ingre.setVisible(true);
 			}
 		});
 		ingresarBtn.setBounds(15, 40, 171, 29);
@@ -131,6 +132,10 @@ public class Menu extends JFrame {
 		lblNewLabel.setBounds(153, 160, 461, 47);
 		contentPane.add(lblNewLabel);
 		
+		JDesktopPane desktopPane = new JDesktopPane();
+		desktopPane.setBounds(78, 160, 1, 1);
+		contentPane.add(desktopPane);
+		
 		/*lblCargos = new JLabel("Cargos");
 		lblCargos.setFont(new Font("Arial", Font.BOLD, 18));
 		lblCargos.setBounds(47, 0, 83, 47);
@@ -142,5 +147,4 @@ public class Menu extends JFrame {
 		contentPane.add(lblRegiones);*/
 		cargarTabla();
 	}
-	
 }
