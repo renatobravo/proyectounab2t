@@ -8,6 +8,12 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
@@ -114,7 +120,7 @@ public class IngresarPostulanteFrame extends JFrame {
 		
 		JComboBox postulanteEstadoTxt = new JComboBox();
 		postulanteEstadoTxt.setName("");
-		postulanteEstadoTxt.setModel(new DefaultComboBoxModel(new String[] {"Seleccionar..", "Casado", "Conviviente Civ\u00EDl", "Soltero", "Divorciado", "Viudo"}));
+		postulanteEstadoTxt.setModel(new DefaultComboBoxModel(new String[] {"Soltero", "Casado", "Union Civ\u00EDl", "Divorciado", "Viudo"}));
 		postulanteEstadoTxt.setBounds(503, 120, 120, 20);
 		contentPane.add(postulanteEstadoTxt);
 		
@@ -194,17 +200,75 @@ public class IngresarPostulanteFrame extends JFrame {
 		JButton ingresarBtn = new JButton("Ingresar");
 		ingresarBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			
+			List<String> errores = new ArrayList<String>();
 			Postulante postulante = new Postulante();
-			//postulante.setIdPostulante(Integer.parseInt(postulanteIdTxt.getText().trim()));
-			//postulante.setIdPostulante(rs.getInt(1));
-			//postulante.setEstadoInscrito(postulanteInscripTxt.getSelectedItem().toString());
-			postulante.setNumCedulaIdentidad(postulanteRunTxt.getText().trim());
-			postulante.setFechaNacimiento(postulanteFnacTxt.getDate());
-			
 
-	
+			if(postulanteRunTxt.getText().trim().isEmpty()) {
+				errores.add("Debe ingresar un Rut para la Cedula");
+			}
+			if(postulanteFnacTxt.getDate() == null) {
+				errores.add("Debe ingresar una Fecha de Nacimiento valida");
+			}
+			if(postulanteApePaTxt.getText().trim().isEmpty()) {
+				errores.add("Debe ingresar un Apellido Paterno");
+			}
+			if(postulanteApMaTxt.getText().trim().isEmpty()) {
+				errores.add("Debe ingresar un Apellido Materno");
+			}
+			if(postulanteNomTxt.getText().trim().isEmpty()) {
+				errores.add("Debe ingresar un Nombre");
+			}
+			if(postulanteNacioTxt.getText().trim().isEmpty()) {
+				errores.add("Debe ingresar una Nacionalidad");
+			}
+			
+			if (errores.isEmpty()) {
+				
+				postulante.setEstadoInscrito(postulanteInscripTxt.getSelectedItem().toString());
+				postulante.setNumCedulaIdentidad(postulanteRunTxt.getText().trim());
+				postulante.setFechaNacimiento(postulanteFnacTxt.getDate());
+				postulante.setNombres(postulanteNomTxt.getText().trim());
+				postulante.setPrimerApellido(postulanteApePaTxt.getText().trim());
+				postulante.setSegundoApellido(postulanteApMaTxt.getText().trim());
+				postulante.setEstadoCivil(postulanteEstadoTxt.getSelectedItem().toString().charAt(0));
+				postulante.setNacionalidad(postulanteNacioTxt.getText().trim());
+				postulante.setCertificadoPermanencia(postulanteCertPerTxt.getSelectedItem().toString().charAt(0));
+				postulante.setFechaCertificadoPermanencia(postulanteFechPerTxt.getDate());
+				
+				
+				if(postulanteFechPerTxt.getDate() == null) {
+					String fechadefault = "01/01/1100";
+					DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");  
+					Date fechafinal;
+					try {
+						fechafinal = dateFormat.parse(fechadefault);
+						postulante.setFechaCertificadoPermanencia(fechafinal);
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					
+				}
+				else {
+					postulante.setFechaCertificadoPermanencia(postulanteFechPerTxt.getDate());
+				}
+				
+				postulante.setEsSeparadoDeHecho(postulanteSepaTxt.getSelectedItem().toString().charAt(0));
+				PostulantesService postulanteService = new PostulantesService();
+				
+				if(postulanteService.crear(postulante)) 
+				{
+					JOptionPane.showMessageDialog(null, "Postulante registrado");
+					dispose();
+					}else {
+					JOptionPane.showMessageDialog(null, "Error al ingresar Postulante");
+				}
+				} else 
+				{
+				 String mensaje = String.join("\n", errores);
+				 JOptionPane.showMessageDialog(null, mensaje);
+
+				}							
 				
 			}
 		});
@@ -218,18 +282,22 @@ public class IngresarPostulanteFrame extends JFrame {
 		contentPane.add(limpiarBtn);
 		
 		JButton viviendaBtn = new JButton("Vivienda");
+		viviendaBtn.setEnabled(false);
 		viviendaBtn.setBounds(729, 86, 120, 88);
 		contentPane.add(viviendaBtn);
 		
 		JButton acreditacionesBtn = new JButton("Acreditaciones");
+		acreditacionesBtn.setEnabled(false);
 		acreditacionesBtn.setBounds(729, 217, 120, 88);
 		contentPane.add(acreditacionesBtn);
 		
 		JButton ahorroBtn = new JButton("Ahorros");
+		ahorroBtn.setEnabled(false);
 		ahorroBtn.setBounds(729, 344, 120, 88);
 		contentPane.add(ahorroBtn);
 		
 		JButton conyugeBtn = new JButton("C\u00F3nyuge");
+		conyugeBtn.setEnabled(false);
 		conyugeBtn.setBounds(729, 472, 120, 88);
 		contentPane.add(conyugeBtn);
 		
@@ -303,16 +371,19 @@ public class IngresarPostulanteFrame extends JFrame {
 		contentPane.add(lblNombreCompleto_1_1);
 		
 		postulanteCalleTxt = new JTextField();
+		postulanteCalleTxt.setEnabled(false);
 		postulanteCalleTxt.setColumns(10);
 		postulanteCalleTxt.setBounds(164, 401, 147, 20);
 		contentPane.add(postulanteCalleTxt);
 		
 		postulanteBlockTxt = new JTextField();
+		postulanteBlockTxt.setEnabled(false);
 		postulanteBlockTxt.setColumns(10);
 		postulanteBlockTxt.setBounds(164, 432, 75, 20);
 		contentPane.add(postulanteBlockTxt);
 		
 		postulanteManzanaTxt = new JTextField();
+		postulanteManzanaTxt.setEnabled(false);
 		postulanteManzanaTxt.setColumns(10);
 		postulanteManzanaTxt.setBounds(164, 463, 75, 20);
 		contentPane.add(postulanteManzanaTxt);
@@ -322,6 +393,7 @@ public class IngresarPostulanteFrame extends JFrame {
 		contentPane.add(lblNombreCompleto_1_1_1);
 		
 		postulanteLocalidadTxt = new JTextField();
+		postulanteLocalidadTxt.setEnabled(false);
 		postulanteLocalidadTxt.setColumns(10);
 		postulanteLocalidadTxt.setBounds(164, 492, 147, 20);
 		contentPane.add(postulanteLocalidadTxt);
@@ -331,6 +403,7 @@ public class IngresarPostulanteFrame extends JFrame {
 		contentPane.add(lblNewLabel_4_1_1);
 		
 		JComboBox postulanteRegionTxt = new JComboBox();
+		postulanteRegionTxt.setEnabled(false);
 		postulanteRegionTxt.setModel(new DefaultComboBoxModel(new String[] {"Seleccionar..", "Regi\u00F3n de Arica y Parinacota", "Regi\u00F3n de Tarapac\u00E1", "Regi\u00F3n de Antofagasta", "Regi\u00F3n de Atacama", "Regi\u00F3n de Coquimbo", "Regi\u00F3n de Valpara\u00EDso", "Regi\u00F3n Metropolitana de Santiago", "Regi\u00F3n del Libertador General Bernardo O\u2019Higgins", "Regi\u00F3n del Maule", "Regi\u00F3n del \u00D1uble", "Regi\u00F3n del Biob\u00EDo", "Regi\u00F3n de La Araucan\u00EDa", "Regi\u00F3n de Los R\u00EDos", "Regi\u00F3n de Los Lagos", "Regi\u00F3n de Ays\u00E9n del General Carlos Ib\u00E1\u00F1ez del Campo", "Regi\u00F3n de Magallanes y la Ant\u00E1rtica Chilena"}));
 		postulanteRegionTxt.setBounds(164, 523, 186, 20);
 		contentPane.add(postulanteRegionTxt);
@@ -340,11 +413,13 @@ public class IngresarPostulanteFrame extends JFrame {
 		contentPane.add(lblNewLabel_3_2_1);
 		
 		postulanteNumTxt = new JTextField();
+		postulanteNumTxt.setEnabled(false);
 		postulanteNumTxt.setColumns(10);
 		postulanteNumTxt.setBounds(502, 401, 147, 20);
 		contentPane.add(postulanteNumTxt);
 		
 		postulanteDeptoTxt = new JTextField();
+		postulanteDeptoTxt.setEnabled(false);
 		postulanteDeptoTxt.setColumns(10);
 		postulanteDeptoTxt.setBounds(502, 432, 75, 20);
 		contentPane.add(postulanteDeptoTxt);
@@ -358,11 +433,13 @@ public class IngresarPostulanteFrame extends JFrame {
 		contentPane.add(lblNombreCompleto_1_1_2);
 		
 		postulanteSitioTxt = new JTextField();
+		postulanteSitioTxt.setEnabled(false);
 		postulanteSitioTxt.setColumns(10);
 		postulanteSitioTxt.setBounds(502, 463, 75, 20);
 		contentPane.add(postulanteSitioTxt);
 		
 		postulantePoblaTxt = new JTextField();
+		postulantePoblaTxt.setEnabled(false);
 		postulantePoblaTxt.setColumns(10);
 		postulantePoblaTxt.setBounds(502, 492, 147, 20);
 		contentPane.add(postulantePoblaTxt);
@@ -376,6 +453,7 @@ public class IngresarPostulanteFrame extends JFrame {
 		contentPane.add(lblNewLabel_4_1_1_1);
 		
 		postulanteIDTxt = new JTextField();
+		postulanteIDTxt.setEnabled(false);
 		postulanteIDTxt.setBorder(null);
 		postulanteIDTxt.setBackground(Color.LIGHT_GRAY);
 		postulanteIDTxt.setSelectedTextColor(Color.WHITE);
@@ -390,6 +468,7 @@ public class IngresarPostulanteFrame extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		postulanteFolioTxt = new JTextField();
+		postulanteFolioTxt.setEnabled(false);
 		postulanteFolioTxt.setBorder(null);
 		postulanteFolioTxt.setSelectedTextColor(Color.WHITE);
 		postulanteFolioTxt.setColumns(10);
@@ -398,6 +477,7 @@ public class IngresarPostulanteFrame extends JFrame {
 		contentPane.add(postulanteFolioTxt);
 		
 		postulanteComTxt = new JTextField();
+		postulanteComTxt.setEnabled(false);
 		postulanteComTxt.setColumns(10);
 		postulanteComTxt.setBounds(503, 525, 147, 20);
 		contentPane.add(postulanteComTxt);
