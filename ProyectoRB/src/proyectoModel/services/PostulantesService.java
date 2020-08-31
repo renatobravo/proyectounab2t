@@ -58,29 +58,27 @@ private Conexion conexion = new Conexion();
 	public boolean crear(Postulante p) {
 		this.conexion.conectar();
 		try {
-			String sql = "INSERT INTO POSTULANTE (ID_POSTULANTE,ESTADO_INSCRITO,NUM_CEDULA_IDENTIDAD,FECHA_DE_NACIMIENTO,"
+			String sql = "INSERT INTO POSTULANTES (ESTADO_INSCRITO,NUM_CEDULA_IDENTIDAD,FECHA_DE_NACIMIENTO,"
 					+ "PRIMER_APELLIDO,SEGUNDO_APELLIDO,NOMBRES,NACIONALIDAD,ESTADO_CIVIL,CERTIFICADO_PERMANENCIA,FECHA_CERTIFICADO_PERMANENCIA,"
-					+ "ES_SEPARADO_DE_HECHO,TITULO,)"
-					+" VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+					+ "ES_SEPARADO_DE_HECHO,TITULO)"
+					+" VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
 			
 			PreparedStatement st = this.conexion.getCon().prepareStatement(sql);
 			
-			DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");  
+			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");  
 			
-			st.setInt(1, p.getIdPostulante());
-			st.setString(2, p.getEstadoInscrito());
-			st.setString(3, p.getNumCedulaIdentidad());
-			st.setDate(4, java.sql.Date.valueOf(dateFormat.format(p.getFechaNacimiento())));
-			st.setString(5, p.getPrimerApellido());
-			st.setString(6, p.getSegundoApellido());
-			st.setString(7, p.getNombres());
-			st.setString(8, p.getNacionalidad());
-			st.setString(9, String.valueOf(p.getEstadoCivil()));
-			st.setString(10, String.valueOf(p.getCertificadoPermanencia()));
-			st.setDate(11, java.sql.Date.valueOf(dateFormat.format(p.getFechaCertificadoPermanencia())));
-			st.setString(12, String.valueOf(p.getEsSeparadoDeHecho()));
-			st.setString(13, p.getTitulo());
-			
+			st.setString(1, p.getEstadoInscrito());
+			st.setString(2, p.getNumCedulaIdentidad());
+			st.setString(3, dateFormat.format(p.getFechaNacimiento()));
+			st.setString(4, p.getPrimerApellido());
+			st.setString(5, p.getSegundoApellido());
+			st.setString(6, p.getNombres());
+			st.setString(7, p.getNacionalidad());
+			st.setString(8, String.valueOf(p.getEstadoCivil()));
+			st.setString(9, String.valueOf(p.getCertificadoPermanencia()));
+			st.setString(10, dateFormat.format(p.getFechaCertificadoPermanencia()));
+			st.setString(11, String.valueOf(p.getEsSeparadoDeHecho()));
+			st.setString(12, p.getTitulo());			
 			
 			st.executeUpdate();
 			
