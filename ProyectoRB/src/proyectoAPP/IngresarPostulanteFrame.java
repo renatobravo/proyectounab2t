@@ -245,6 +245,7 @@ public class IngresarPostulanteFrame extends JFrame {
 		contentPane.add(lblNewLabel_3);
 		
 		postulanteTeleTrabTxt = new JTextField();
+		postulanteTeleTrabTxt.setEnabled(false);
 		postulanteTeleTrabTxt.setColumns(10);
 		postulanteTeleTrabTxt.setBounds(191, 282, 120, 20);
 		contentPane.add(postulanteTeleTrabTxt);
@@ -254,6 +255,7 @@ public class IngresarPostulanteFrame extends JFrame {
 		contentPane.add(lblApellidoPaterno_1);
 		
 		postulanteTeleMovTxt = new JTextField();
+		postulanteTeleMovTxt.setEnabled(false);
 		postulanteTeleMovTxt.setColumns(10);
 		postulanteTeleMovTxt.setBounds(191, 313, 120, 20);
 		contentPane.add(postulanteTeleMovTxt);
@@ -263,6 +265,7 @@ public class IngresarPostulanteFrame extends JFrame {
 		contentPane.add(lblNombreCompleto_1);
 		
 		postulanteEmailTxt = new JTextField();
+		postulanteEmailTxt.setEnabled(false);
 		postulanteEmailTxt.setColumns(10);
 		postulanteEmailTxt.setBounds(164, 344, 147, 20);
 		contentPane.add(postulanteEmailTxt);
@@ -276,20 +279,16 @@ public class IngresarPostulanteFrame extends JFrame {
 		contentPane.add(lblApellidoPaterno_1_1);
 		
 		postulanteCodPosTxt = new JTextField();
+		postulanteCodPosTxt.setEnabled(false);
 		postulanteCodPosTxt.setColumns(10);
 		postulanteCodPosTxt.setBounds(503, 313, 120, 20);
 		contentPane.add(postulanteCodPosTxt);
 		
 		postulanteTeleDomTxt = new JTextField();
+		postulanteTeleDomTxt.setEnabled(false);
 		postulanteTeleDomTxt.setColumns(10);
 		postulanteTeleDomTxt.setBounds(503, 282, 120, 20);
 		contentPane.add(postulanteTeleDomTxt);
-		
-		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setBorder(new LineBorder(Color.LIGHT_GRAY));
-		lblNewLabel_2.setBackground(Color.LIGHT_GRAY);
-		lblNewLabel_2.setBounds(10, 271, 664, 105);
-		contentPane.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3_2 = new JLabel("Calle:");
 		lblNewLabel_3_2.setBounds(30, 401, 124, 20);
@@ -414,6 +413,12 @@ public class IngresarPostulanteFrame extends JFrame {
 		lblNewLabel_1_2.setBackground(Color.LIGHT_GRAY);
 		lblNewLabel_1_2.setBounds(684, 11, 200, 589);
 		contentPane.add(lblNewLabel_1_2);
+		
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setBorder(new LineBorder(Color.LIGHT_GRAY));
+		lblNewLabel_2.setBackground(Color.DARK_GRAY);
+		lblNewLabel_2.setBounds(10, 271, 664, 105);
+		contentPane.add(lblNewLabel_2);
 		
 		
 	}
