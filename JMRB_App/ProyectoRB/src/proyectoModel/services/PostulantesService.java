@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -189,62 +188,6 @@ public boolean actualizarPorId(Postulante postulante) {
 			this.conexion.desconectar();
 		}
 	
-	}
-	
-	public int ultimoId() {
-		this.conexion.conectar();
-		int ultimoId = -2;
-		try {
-			String sql = "SELECT MAX(ID_POSTULANTE) FROM POSTULANTES";
-			PreparedStatement st = this.conexion.getCon().prepareStatement(sql);
-			ResultSet rs = st.executeQuery();
-			if(rs.next()) {
-				ultimoId = rs.getInt(1);
-			}
-			rs.close();
-			return ultimoId;
-		}catch(Exception ex) {
-			return -2;
-		}finally {
-			this.conexion.desconectar();
-		}
-	}
-	
-	public List<Postulante> obtenerPorFecha(Date d){
-		this.conexion.conectar();
-		List<Postulante> postulantes = new ArrayList<Postulante>();
-		try {		
-			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");  
-			String sql = "SELECT ID_POSTULANTE, ESTADO_INSCRITO, NUM_CEDULA_IDENTIDAD, FECHA_DE_NACIMIENTO, PRIMER_APELLIDO, SEGUNDO_APELLIDO, NOMBRES, NACIONALIDAD,"
-					+ " ESTADO_CIVIL, CERTIFICADO_PERMANENCIA, FECHA_CERTIFICADO_PERMANENCIA, ES_SEPARADO_DE_HECHO, TITULO FROM POSTULANTES WHERE FECHA_DE_NACIMIENTO >= ? ORDER BY NOMBRES";
-			PreparedStatement st = this.conexion.getCon().prepareStatement(sql);
-			st.setDate(1, java.sql.Date.valueOf(dateFormat.format(d)));
-			ResultSet rs = st.executeQuery();
-			while(rs.next()) {
-				
-				Postulante postulante = new Postulante();
-				postulante.setIdPostulante(rs.getInt(1));
-				postulante.setEstadoInscrito(rs.getString(2));
-				postulante.setNumCedulaIdentidad(rs.getString(3));
-				postulante.setFechaNacimiento(rs.getDate(4));
-				postulante.setPrimerApellido(rs.getString(5));
-				postulante.setSegundoApellido(rs.getString(6));
-				postulante.setNombres(rs.getString(7));
-				postulante.setNacionalidad(rs.getString(8));
-				postulante.setEstadoCivil(rs.getString(9).charAt(0));
-				postulante.setCertificadoPermanencia(rs.getString(10).charAt(0));
-				postulante.setFechaCertificadoPermanencia(rs.getDate(11));
-				postulante.setEsSeparadoDeHecho(rs.getString(12).charAt(0));
-				postulante.setTitulo(rs.getString(13));
-				postulantes.add(postulante);
-			}
-			rs.close();
-			return postulantes;
-		}catch(Exception ex) {
-			return null;
-		}finally {
-			this.conexion.desconectar();
-		}
 	}
 
 }

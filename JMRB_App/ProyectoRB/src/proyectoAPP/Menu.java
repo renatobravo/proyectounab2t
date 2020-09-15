@@ -32,7 +32,6 @@ public class Menu extends JFrame {
 	private JPanel contentPane;
 	private JTable tablaPostulantes;
 	private JButton ingresarBtn;
-	private JButton buscarBtn;
 	private JButton actualizarBtn;
 	private JButton verBtn;
 	private JButton eliminarBtn;
@@ -63,7 +62,6 @@ public class Menu extends JFrame {
 		});
 	}
 	
-	//usar esto
 	private void cargarTabla() {
 		PostulantesService service = new PostulantesService();
 		List<Postulante> listPost = service.obtenerTodos();
@@ -90,7 +88,7 @@ public class Menu extends JFrame {
 	public Menu() {
 		setTitle("https://fpp.minvu.gob.cl");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 820, 600);
+		setBounds(100, 100, 750, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -99,7 +97,7 @@ public class Menu extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBorder(new LineBorder(Color.LIGHT_GRAY));
 		scrollPane.setBackground(Color.WHITE);
-		scrollPane.setBounds(10, 296, 754, 254);
+		scrollPane.setBounds(10, 296, 714, 254);
 		contentPane.add(scrollPane);
 		
 		tablaPostulantes = new JTable();
@@ -124,16 +122,6 @@ public class Menu extends JFrame {
 		});
 		actualizarBtn.setBounds(35, 155, 171, 29);
 		contentPane.add(actualizarBtn);
-		
-		buscarBtn = new JButton("Buscar por fecha de nacimiento");
-		buscarBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				BusquedaFrame busque = new BusquedaFrame();
-				busque.setVisible(true);
-			}
-		});
-		buscarBtn.setBounds(515, 196, 222, 29);
-		contentPane.add(buscarBtn);
 		
 		verBtn = new JButton("Refrescar Lista de Postulantes (Listar)");
 		verBtn.addActionListener(new ActionListener() {
@@ -183,7 +171,7 @@ public class Menu extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		mantenerBtn.setBounds(515, 115, 222, 29);
+		mantenerBtn.setBounds(515, 115, 171, 29);
 		contentPane.add(mantenerBtn);
 		
 		JButton reporteBtn = new JButton("Reportes");
@@ -192,7 +180,7 @@ public class Menu extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		reporteBtn.setBounds(515, 155, 222, 29);
+		reporteBtn.setBounds(515, 155, 171, 29);
 		contentPane.add(reporteBtn);
 		
 		conyugeBtn = new JButton("C\u00F3nyuge");
@@ -234,7 +222,7 @@ public class Menu extends JFrame {
 		
 		lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setBorder(new LineBorder(Color.LIGHT_GRAY));
-		lblNewLabel_2.setBounds(478, 72, 286, 180);
+		lblNewLabel_2.setBounds(478, 72, 246, 169);
 		contentPane.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Proximamente");

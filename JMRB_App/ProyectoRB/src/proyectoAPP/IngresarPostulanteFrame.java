@@ -29,11 +29,7 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import com.toedter.calendar.JDateChooser;
 
-import proyectoModel.entities.DatosDeContacto;
-import proyectoModel.entities.Direccion;
 import proyectoModel.entities.Postulante;
-import proyectoModel.services.DatosDeContactoServices;
-import proyectoModel.services.DireccionServices;
 import proyectoModel.services.PostulantesService;
 
 import javax.swing.JRadioButton;
@@ -78,7 +74,7 @@ public class IngresarPostulanteFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("C\u00E9dula de Identidad*:");
+		JLabel lblNewLabel = new JLabel("C\u00E9dula de Identidad:");
 		lblNewLabel.setBounds(23, 61, 131, 20);
 		contentPane.add(lblNewLabel);
 		
@@ -87,7 +83,7 @@ public class IngresarPostulanteFrame extends JFrame {
 		contentPane.add(postulanteRunTxt);
 		postulanteRunTxt.setColumns(10);
 		
-		JLabel lblApellidoPaterno = new JLabel("Apellido Paterno*:");
+		JLabel lblApellidoPaterno = new JLabel("Apellido Paterno:");
 		lblApellidoPaterno.setBounds(23, 92, 102, 20);
 		contentPane.add(lblApellidoPaterno);
 		
@@ -96,7 +92,7 @@ public class IngresarPostulanteFrame extends JFrame {
 		postulanteApePaTxt.setBounds(184, 90, 120, 20);
 		contentPane.add(postulanteApePaTxt);
 		
-		JLabel lblNombreCompleto = new JLabel("Nombre Completo*:");
+		JLabel lblNombreCompleto = new JLabel("Nombre Completo:");
 		lblNombreCompleto.setBounds(23, 120, 140, 20);
 		contentPane.add(lblNombreCompleto);
 		
@@ -105,12 +101,12 @@ public class IngresarPostulanteFrame extends JFrame {
 		postulanteNomTxt.setBounds(164, 120, 140, 20);
 		contentPane.add(postulanteNomTxt);
 		
-		JLabel lblFechaNacimiento = new JLabel("Fecha Nacimiento*:");
+		JLabel lblFechaNacimiento = new JLabel("Fecha Nacimiento:");
 		lblFechaNacimiento.setBounds(368, 60, 131, 23);
 		contentPane.add(lblFechaNacimiento);
 		
-		JLabel lblApellidoMaterno = new JLabel("Apellido Materno*:");
-		lblApellidoMaterno.setBounds(368, 91, 131, 23);
+		JLabel lblApellidoMaterno = new JLabel("Apellido Materno:");
+		lblApellidoMaterno.setBounds(368, 91, 102, 23);
 		contentPane.add(lblApellidoMaterno);
 		
 		postulanteApMaTxt = new JTextField();
@@ -118,7 +114,7 @@ public class IngresarPostulanteFrame extends JFrame {
 		postulanteApMaTxt.setBounds(503, 90, 120, 20);
 		contentPane.add(postulanteApMaTxt);
 		
-		JLabel lblNewLabel_4_1 = new JLabel("Estado Civ\u00EDl*:");
+		JLabel lblNewLabel_4_1 = new JLabel("Estado Civ\u00EDl:");
 		lblNewLabel_4_1.setBounds(368, 119, 102, 23);
 		contentPane.add(lblNewLabel_4_1);
 		
@@ -132,7 +128,7 @@ public class IngresarPostulanteFrame extends JFrame {
 		postulanteFnacTxt.setBounds(503, 61, 120, 20);
 		contentPane.add(postulanteFnacTxt);
 		
-		JLabel lblNacionalidad = new JLabel("Nacionalidad*:");
+		JLabel lblNacionalidad = new JLabel("Nacionalidad:");
 		lblNacionalidad.setBounds(23, 152, 102, 20);
 		contentPane.add(lblNacionalidad);
 		
@@ -206,10 +202,7 @@ public class IngresarPostulanteFrame extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 			List<String> errores = new ArrayList<String>();
 			Postulante postulante = new Postulante();
-			Direccion direccion = new Direccion();
-			DatosDeContacto datosDeContacto = new DatosDeContacto();
 
-			//validaciones postulantes
 			if(postulanteRunTxt.getText().trim().isEmpty()) {
 				errores.add("Debe ingresar un Rut para la Cedula");
 			}
@@ -229,39 +222,8 @@ public class IngresarPostulanteFrame extends JFrame {
 				errores.add("Debe ingresar una Nacionalidad");
 			}
 			
-			
-			//validaciones datos de contacto
-			if(postulanteTeleMovTxt.getText().trim().isEmpty()) {
-				errores.add("Debe ingresar una Telefono Movil");
-			}
-			if(postulanteEmailTxt.getText().trim().isEmpty()) {
-				errores.add("Debe ingresar una Email");
-			}
-			if(postulanteCodPosTxt.getText().trim().isEmpty()) {
-				errores.add("Debe ingresar una Codigo Postal");
-			}
-			
-			//validaciones direccion
-			if(postulanteCalleTxt.getText().trim().isEmpty()) {
-				errores.add("Debe ingresar una Calle");
-			}
-			
-			if(postulanteLocalidadTxt.getText().trim().isEmpty()) {
-				errores.add("Debe ingresar una Localidad");
-			}
-			if(postulanteNumTxt.getText().trim().isEmpty()) {
-				errores.add("Debe ingresar una Numero de casa/depto");
-			}
-			if(postulantePoblaTxt.getText().trim().isEmpty()) {
-				errores.add("Debe ingresar una Poblacion");
-			}
-			if(postulanteComTxt.getText().trim().isEmpty()) {
-				errores.add("Debe ingresar una Comuna");
-			}
-			
 			if (errores.isEmpty()) {
 				
-				//Tabla Postulante
 				postulante.setEstadoInscrito(postulanteInscripTxt.getSelectedItem().toString());
 				postulante.setNumCedulaIdentidad(postulanteRunTxt.getText().trim());
 				postulante.setFechaNacimiento(postulanteFnacTxt.getDate());
@@ -282,6 +244,7 @@ public class IngresarPostulanteFrame extends JFrame {
 						fechafinal = dateFormat.parse(fechadefault);
 						postulante.setFechaCertificadoPermanencia(fechafinal);
 					} catch (ParseException e) {
+						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					
@@ -291,70 +254,16 @@ public class IngresarPostulanteFrame extends JFrame {
 				}
 				
 				postulante.setEsSeparadoDeHecho(postulanteSepaTxt.getSelectedItem().toString().charAt(0));
-				
-				//Datos de Contacto
-				
-				if(!postulanteTeleTrabTxt.getText().trim().isEmpty())
-				{
-					datosDeContacto.setTelefonoTrabajo(Integer.parseInt(postulanteTeleTrabTxt.getText().trim()));
-				}
-				datosDeContacto.setTelefonoMovil(Integer.parseInt(postulanteTeleMovTxt.getText().trim()));
-				datosDeContacto.setEmail(postulanteEmailTxt.getText().trim());
-				if(!postulanteTeleDomTxt.getText().trim().isEmpty())
-				{
-					datosDeContacto.setTelefonoDomicilio(Integer.parseInt(postulanteTeleDomTxt.getText().trim()));
-				}
-				datosDeContacto.setCodigoPostal(Integer.parseInt(postulanteCodPosTxt.getText().trim()));
-				
-				
-				//Direccion
-				
-				direccion.setBloc(postulanteBlockTxt.getText().trim());
-				direccion.setCalle(postulanteCalleTxt.getText().trim());
-				direccion.setComuna(postulanteComTxt.getText().trim());
-				if(!postulanteDeptoTxt.getText().trim().isEmpty())
-				{
-					direccion.setDepartamento(Integer.parseInt(postulanteDeptoTxt.getText().trim()));
-				}
-				direccion.setLocalidad(postulanteLocalidadTxt.getText().trim());
-				direccion.setManzana(postulanteManzanaTxt.getText().trim());
-				if(!postulanteNumTxt.getText().trim().isEmpty())
-				{
-				direccion.setNumero(Integer.parseInt(postulanteNumTxt.getText().trim()));
-				}
-				direccion.setPoblacion(postulantePoblaTxt.getText().trim());
-				direccion.setSitio(postulanteSitioTxt.getText().trim());
-				direccion.setRegion(postulanteCertPerTxt.getSelectedItem().toString());
-				
-				
 				PostulantesService postulanteService = new PostulantesService();
-				DireccionServices direccionService = new DireccionServices();
-				DatosDeContactoServices datosDeContactoService = new DatosDeContactoServices();
 				
 				if(postulanteService.crear(postulante)) 
 				{
-					direccion.setIdPostulante(postulanteService.ultimoId());
-					if(direccionService.crear(direccion))
-					{
-						datosDeContacto.setIdPostulante(postulanteService.ultimoId());
-						if(datosDeContactoService.crear(datosDeContacto)) {
-							JOptionPane.showMessageDialog(null, "Postulante registrado de manera exitosa");
-							dispose();
-						}
-						else
-						{
-							JOptionPane.showMessageDialog(null, "Error al ingresar Postulante, fallan los datos de Contacto");
-						}
-						
-					}
-					else
-					{
-						JOptionPane.showMessageDialog(null, "Error al ingresar Postulante, fallan los datos de la direccion");
-					}
-				}else {
+					JOptionPane.showMessageDialog(null, "Postulante registrado");
+					dispose();
+					}else {
 					JOptionPane.showMessageDialog(null, "Error al ingresar Postulante");
 				}
-			} else 
+				} else 
 				{
 				 String mensaje = String.join("\n", errores);
 				 JOptionPane.showMessageDialog(null, mensaje);
@@ -404,24 +313,27 @@ public class IngresarPostulanteFrame extends JFrame {
 		contentPane.add(lblNewLabel_3);
 		
 		postulanteTeleTrabTxt = new JTextField();
+		postulanteTeleTrabTxt.setEnabled(false);
 		postulanteTeleTrabTxt.setColumns(10);
 		postulanteTeleTrabTxt.setBounds(191, 282, 120, 20);
 		contentPane.add(postulanteTeleTrabTxt);
 		
-		JLabel lblApellidoPaterno_1 = new JLabel("Tel\u00E9fono M\u00F3vil*:");
+		JLabel lblApellidoPaterno_1 = new JLabel("Tel\u00E9fono M\u00F3vil:");
 		lblApellidoPaterno_1.setBounds(30, 313, 102, 20);
 		contentPane.add(lblApellidoPaterno_1);
 		
 		postulanteTeleMovTxt = new JTextField();
+		postulanteTeleMovTxt.setEnabled(false);
 		postulanteTeleMovTxt.setColumns(10);
 		postulanteTeleMovTxt.setBounds(191, 313, 120, 20);
 		contentPane.add(postulanteTeleMovTxt);
 		
-		JLabel lblNombreCompleto_1 = new JLabel("E-mail*:");
+		JLabel lblNombreCompleto_1 = new JLabel("E-mail:");
 		lblNombreCompleto_1.setBounds(30, 344, 102, 20);
 		contentPane.add(lblNombreCompleto_1);
 		
 		postulanteEmailTxt = new JTextField();
+		postulanteEmailTxt.setEnabled(false);
 		postulanteEmailTxt.setColumns(10);
 		postulanteEmailTxt.setBounds(164, 344, 147, 20);
 		contentPane.add(postulanteEmailTxt);
@@ -430,21 +342,23 @@ public class IngresarPostulanteFrame extends JFrame {
 		lblNewLabel_3_1.setBounds(368, 282, 131, 20);
 		contentPane.add(lblNewLabel_3_1);
 		
-		JLabel lblApellidoPaterno_1_1 = new JLabel("C\u00F3digo Postal*:");
+		JLabel lblApellidoPaterno_1_1 = new JLabel("C\u00F3digo Postal:");
 		lblApellidoPaterno_1_1.setBounds(368, 313, 148, 20);
 		contentPane.add(lblApellidoPaterno_1_1);
 		
 		postulanteCodPosTxt = new JTextField();
+		postulanteCodPosTxt.setEnabled(false);
 		postulanteCodPosTxt.setColumns(10);
 		postulanteCodPosTxt.setBounds(503, 313, 120, 20);
 		contentPane.add(postulanteCodPosTxt);
 		
 		postulanteTeleDomTxt = new JTextField();
+		postulanteTeleDomTxt.setEnabled(false);
 		postulanteTeleDomTxt.setColumns(10);
 		postulanteTeleDomTxt.setBounds(503, 282, 120, 20);
 		contentPane.add(postulanteTeleDomTxt);
 		
-		JLabel lblNewLabel_3_2 = new JLabel("Calle*:");
+		JLabel lblNewLabel_3_2 = new JLabel("Calle:");
 		lblNewLabel_3_2.setBounds(30, 401, 124, 20);
 		contentPane.add(lblNewLabel_3_2);
 		
@@ -457,48 +371,55 @@ public class IngresarPostulanteFrame extends JFrame {
 		contentPane.add(lblNombreCompleto_1_1);
 		
 		postulanteCalleTxt = new JTextField();
+		postulanteCalleTxt.setEnabled(false);
 		postulanteCalleTxt.setColumns(10);
 		postulanteCalleTxt.setBounds(164, 401, 147, 20);
 		contentPane.add(postulanteCalleTxt);
 		
 		postulanteBlockTxt = new JTextField();
+		postulanteBlockTxt.setEnabled(false);
 		postulanteBlockTxt.setColumns(10);
 		postulanteBlockTxt.setBounds(164, 432, 75, 20);
 		contentPane.add(postulanteBlockTxt);
 		
 		postulanteManzanaTxt = new JTextField();
+		postulanteManzanaTxt.setEnabled(false);
 		postulanteManzanaTxt.setColumns(10);
 		postulanteManzanaTxt.setBounds(164, 463, 75, 20);
 		contentPane.add(postulanteManzanaTxt);
 		
-		JLabel lblNombreCompleto_1_1_1 = new JLabel("Localidad*:");
+		JLabel lblNombreCompleto_1_1_1 = new JLabel("Localidad:");
 		lblNombreCompleto_1_1_1.setBounds(30, 494, 124, 20);
 		contentPane.add(lblNombreCompleto_1_1_1);
 		
 		postulanteLocalidadTxt = new JTextField();
+		postulanteLocalidadTxt.setEnabled(false);
 		postulanteLocalidadTxt.setColumns(10);
 		postulanteLocalidadTxt.setBounds(164, 492, 147, 20);
 		contentPane.add(postulanteLocalidadTxt);
 		
-		JLabel lblNewLabel_4_1_1 = new JLabel("Regi\u00F3n*:");
+		JLabel lblNewLabel_4_1_1 = new JLabel("Regi\u00F3n:");
 		lblNewLabel_4_1_1.setBounds(30, 524, 124, 23);
 		contentPane.add(lblNewLabel_4_1_1);
 		
 		JComboBox postulanteRegionTxt = new JComboBox();
+		postulanteRegionTxt.setEnabled(false);
 		postulanteRegionTxt.setModel(new DefaultComboBoxModel(new String[] {"Seleccionar..", "Regi\u00F3n de Arica y Parinacota", "Regi\u00F3n de Tarapac\u00E1", "Regi\u00F3n de Antofagasta", "Regi\u00F3n de Atacama", "Regi\u00F3n de Coquimbo", "Regi\u00F3n de Valpara\u00EDso", "Regi\u00F3n Metropolitana de Santiago", "Regi\u00F3n del Libertador General Bernardo O\u2019Higgins", "Regi\u00F3n del Maule", "Regi\u00F3n del \u00D1uble", "Regi\u00F3n del Biob\u00EDo", "Regi\u00F3n de La Araucan\u00EDa", "Regi\u00F3n de Los R\u00EDos", "Regi\u00F3n de Los Lagos", "Regi\u00F3n de Ays\u00E9n del General Carlos Ib\u00E1\u00F1ez del Campo", "Regi\u00F3n de Magallanes y la Ant\u00E1rtica Chilena"}));
 		postulanteRegionTxt.setBounds(164, 523, 186, 20);
 		contentPane.add(postulanteRegionTxt);
 		
-		JLabel lblNewLabel_3_2_1 = new JLabel("N\u00FAmero*:");
+		JLabel lblNewLabel_3_2_1 = new JLabel("N\u00FAmero:");
 		lblNewLabel_3_2_1.setBounds(368, 401, 124, 20);
 		contentPane.add(lblNewLabel_3_2_1);
 		
 		postulanteNumTxt = new JTextField();
+		postulanteNumTxt.setEnabled(false);
 		postulanteNumTxt.setColumns(10);
 		postulanteNumTxt.setBounds(502, 401, 147, 20);
 		contentPane.add(postulanteNumTxt);
 		
 		postulanteDeptoTxt = new JTextField();
+		postulanteDeptoTxt.setEnabled(false);
 		postulanteDeptoTxt.setColumns(10);
 		postulanteDeptoTxt.setBounds(502, 432, 75, 20);
 		contentPane.add(postulanteDeptoTxt);
@@ -512,20 +433,22 @@ public class IngresarPostulanteFrame extends JFrame {
 		contentPane.add(lblNombreCompleto_1_1_2);
 		
 		postulanteSitioTxt = new JTextField();
+		postulanteSitioTxt.setEnabled(false);
 		postulanteSitioTxt.setColumns(10);
 		postulanteSitioTxt.setBounds(502, 463, 75, 20);
 		contentPane.add(postulanteSitioTxt);
 		
 		postulantePoblaTxt = new JTextField();
+		postulantePoblaTxt.setEnabled(false);
 		postulantePoblaTxt.setColumns(10);
 		postulantePoblaTxt.setBounds(502, 492, 147, 20);
 		contentPane.add(postulantePoblaTxt);
 		
-		JLabel lblNombreCompleto_1_1_1_1 = new JLabel("Poblaci\u00F3n / Villa*:");
+		JLabel lblNombreCompleto_1_1_1_1 = new JLabel("Poblaci\u00F3n / Villa:");
 		lblNombreCompleto_1_1_1_1.setBounds(368, 494, 124, 20);
 		contentPane.add(lblNombreCompleto_1_1_1_1);
 		
-		JLabel lblNewLabel_4_1_1_1 = new JLabel("Comuna*:");
+		JLabel lblNewLabel_4_1_1_1 = new JLabel("Comuna:");
 		lblNewLabel_4_1_1_1.setBounds(368, 524, 124, 23);
 		contentPane.add(lblNewLabel_4_1_1_1);
 		
@@ -554,6 +477,7 @@ public class IngresarPostulanteFrame extends JFrame {
 		contentPane.add(postulanteFolioTxt);
 		
 		postulanteComTxt = new JTextField();
+		postulanteComTxt.setEnabled(false);
 		postulanteComTxt.setColumns(10);
 		postulanteComTxt.setBounds(503, 525, 147, 20);
 		contentPane.add(postulanteComTxt);
@@ -575,10 +499,6 @@ public class IngresarPostulanteFrame extends JFrame {
 		lblNewLabel_2.setBackground(Color.DARK_GRAY);
 		lblNewLabel_2.setBounds(10, 271, 664, 105);
 		contentPane.add(lblNewLabel_2);
-		
-		JLabel lblNewLabel_4 = new JLabel("(*) Campos obligatorios");
-		lblNewLabel_4.setBounds(23, 578, 140, 14);
-		contentPane.add(lblNewLabel_4);
 		
 		
 	}
